@@ -23,7 +23,7 @@ async function createUser(req, res)
 async function addExercises(req, res)
 {
     try{
-        const {username, description, duration, date} = req.body;
+        const {description, duration, date} = req.body;
 
         let dateObj = parseDate(date);
 
@@ -31,10 +31,8 @@ async function addExercises(req, res)
         //Check if user exists
         if(await exerciseUsers.count({_id: _id}) == 1)
         {
-            //Exercises have their own separate ids (_id), but json object returned doesn't show that.
-            //They also have an id property for the user's id.
             const user = await exerciseUsers.findOne({_id: _id});
-            console.log(dateObj.toDateString());
+            const username = user.username;
             let exercise = 
             {
                 //63bf39bbc0afcca14fbd2b56 (for testing)

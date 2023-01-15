@@ -2,7 +2,6 @@
 function parseDate(date)
 {
     //Behaviour: if the date isn't in the appropriate format, the current date will be used instead.
-    console.log(`Parsing ${date}`);
     if(date.match(/\d\d\d\d-\d\d-\d\d/) !== null && date.length === 10) 
     {
         let [year, month, day] = date.match(/[^-]+/ig);
