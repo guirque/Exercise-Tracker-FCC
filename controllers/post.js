@@ -48,7 +48,7 @@ async function addExercises(req, res)
             await newExercise.save();
 
             //Response
-            let response = {_id: _id, description: description, duration: duration, date: dateObj.toDateString()}
+            let response = {_id: _id, username: username, description: description, duration: duration, date: dateObj.toDateString()}
             res.json(response);
         }
         else res.status(404).json(
