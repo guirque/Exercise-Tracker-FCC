@@ -25,9 +25,11 @@ async function addExercises(req, res)
     try{
         const {description, duration, date} = req.body;
 
+        let numberDuration = Number(duration);
         let dateObj = parseDate(date);
 
-        const _id = req.body[':_id'];
+        const _id = req.params['_id'];
+        
         //Check if user exists
         if(await exerciseUsers.count({_id: _id}) == 1)
         {
@@ -39,14 +41,14 @@ async function addExercises(req, res)
                 id: _id,
                 username: username,
                 description: description,
-                duration: duration,
+                duration: numberDuration,
                 date: dateObj.toDateString()
             };
             let newExercise = new exercises(exercise);
             await newExercise.save();
 
             //Response
-            let response = {_id: _id, username: username, description: description, duration: duration, date: dateObj.toDateString()}
+            let response = {_id: _id, username: username, description: description, duration: numberDuration, date: dateObj.toDateString()}
             res.json(response);
         }
         else res.status(404).json(

@@ -33,7 +33,7 @@ app.use(express.json());
 
 //POST Requests
 app.post('/api/users', createUser);
-app.post('/api/users/:id/exercises', addExercises);
+app.post('/api/users/:_id/exercises', addExercises);
 
 //GET Requests
 app.get('/api/users', getAllUsers);
